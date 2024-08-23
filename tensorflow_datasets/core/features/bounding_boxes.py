@@ -88,7 +88,10 @@ class BBoxFeature(tensor_feature.Tensor):
 
     # Validate the coordinates
     for coordinate in bbox:
-      if not isinstance(coordinate, float):
+      if not isinstance(
+          coordinate,
+          (float, np.float16, np.float32, np.float64),
+      ):
         raise ValueError(
             'BBox coordinates should be float. Got {}.'.format(bbox)
         )
